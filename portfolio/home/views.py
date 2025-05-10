@@ -15,16 +15,19 @@ def index(request):
         name = request.POST.get("name")
         email = request.POST.get("email")
         message = request.POST.get("message")
-        
-        # You can process or store the data here
-        # Example: send an email
-        send_mail(
-            f"Message from {name}",
-            f"Sender Email: {email}\n\nMessage:\n{message}",
-            'jobmania420@gmail.com',  # This should be your verified sender email
-            ['sugamacharya1863@gmail.com'],
-        )
-        messages.success(request, "Your message has been sent successfully!")
-        return redirect('index')  # redirect to avoid form resubmission
-    
+        if not all([name, email, message]):
+            messages.error(request, "All fields are required.")
+            return redirect('index')
+        try:
+            send_mail(
+                subject=f"Message from {name}",
+                message=f"Sender Email: {email}\n\nMessage:\n{message}",
+                from_email='jobmania420@gmail.com',
+                recipient_list=['sugamacharya1863@gmail.com'],
+                fail_silently=False,
+            )
+            messages.success(request, "Your message has been sent successfully!")
+        except Exception as e:
+            messages.error(request, f"Failed to send message: {str(e)}")
+        return redirect('index')
     return render(request, "home/index.html")

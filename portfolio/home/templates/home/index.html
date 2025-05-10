@@ -16,6 +16,23 @@
 </head>
 
 <body>
+  {{% if messages %}
+    <div class="fixed bottom-4 right-4 z-1000" style="isolation: isolate;">
+      {% for message in messages %}
+        <div class="cosmic-alert {% if message.tags == 'success' %}success{% else %}error{% endif %}" role="alert" style="isolation: isolate;">
+          <span class="cosmic-alert__icon">
+            {% if message.tags == 'success' %}
+              <i class="fas fa-check-circle"></i>
+            {% else %}
+              <i class="fas fa-exclamation-circle"></i>
+            {% endif %}
+          </span>
+          <span class="cosmic-alert__message">{{ message }}</span>
+          <span class="cosmic-alert__close" role="button" tabindex="0" aria-label="Close alert">×</span>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
   <canvas id="cosmic-orb"></canvas>
 {% include 	"home/navbar.html" %}
 <!-- Hero Section -->
@@ -162,23 +179,23 @@
   </section>
   
   
-<!-- Contact -->
-  <section id="contact" class="py-20 bg-gray-900">
+<!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gray-900 relative">
     <div class="container mx-auto px-6">
       <h2 class="text-5xl font-bold text-center glitch font-orbitron mb-12" data-text="Let's Connect">Let's Connect</h2>
       <div class="holo-panel p-8 max-w-lg mx-auto">
-        <form action="{% url 'contact' %}" method="POST">
+        <form action="{% url 'index' %}" method="POST">
           {% csrf_token %}
           <div class="mb-6 relative">
-            <input type="text" id="name" name="name" class="form-input w-full p-3 rounded-lg peer" placeholder=" " required aria-label="Your Name"/>
+            <input type="text" id="name" name="name" class="form-input w-full p-3 rounded-lg peer" placeholder=" " required aria-label="Your Name"/ required>
             <label for="name" class="form-label absolute left-2 top-2">Your Name</label>
           </div>
           <div class="mb-6 relative">
-            <input type="email" id="email" name="email" class="form-input w-full p-3 rounded-lg peer" placeholder=" " required aria-label="Your Email"/>
+            <input type="email" id="email" name="email" class="form-input w-full p-3 rounded-lg peer" placeholder=" " required aria-label="Your Email"/ required>
             <label for="email" class="form-label absolute left-2 top-2">Your Email</label>
           </div>
           <div class="mb-6 relative">
-            <textarea id="message" name="message" rows="5" class="form-input w-full p-3 rounded-lg peer" placeholder=" " required aria-label="Your Message"></textarea>
+            <textarea id="message" name="message" rows="5" class="form-input w-full p-3 rounded-lg peer" placeholder=" " required aria-label="Your Message" required></textarea>
             <label for="message" class="form-label absolute left-3 top-2">Your Message</label>
           </div>
           <button type="submit" class="neon-btn w-full py-3 rounded-lg font-orbitron flex items-center justify-center gap-2">
@@ -189,9 +206,37 @@
     </div>
   </section>
 
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const alerts = document.querySelectorAll('.cosmic-alert');
+      alerts.forEach(alert => {
+        // Auto-dismiss success alerts after 3 seconds
+        if (alert.classList.contains('success')) {
+          setTimeout(() => {
+            alert.style.animation = 'fade-out 0.5s ease';
+            setTimeout(() => alert.remove(), 500);
+          }, 3000);
+        }
+
+        // Close button for all alerts
+        const closeBtn = alert.querySelector('.cosmic-alert__close');
+        if (closeBtn) {
+          closeBtn.addEventListener('click', () => {
+            alert.style.animation = 'fade-out 0.5s ease';
+            setTimeout(() => alert.remove(), 500);
+          });
+          closeBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              alert.style.animation = 'fade-out 0.5s ease';
+              setTimeout(() => alert.remove(), 500);
+            }
+          });
+        }
+      });
+    });
+  </script>
 <!-- Footer -->
 {% include "home/footer.html" %}
-  <script src="js/script.js"></script>
 
 </body>
 </html>
