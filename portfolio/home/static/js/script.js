@@ -82,7 +82,15 @@
       ease: 'elastic.out(1, 0.5)'
     });
 
-    
+  document.querySelectorAll('.cosmic-footer__link').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
 
     // Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -93,14 +101,4 @@
         });
       });
     });
-
-
-  document.querySelectorAll('.cosmic-footer__link').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
+  

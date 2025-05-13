@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  {{% if messages %}
+  {% if messages %}
     <div class="fixed bottom-4 right-4 z-1000" style="isolation: isolate;">
       {% for message in messages %}
         <div class="cosmic-alert {% if message.tags == 'success' %}success{% else %}error{% endif %}" role="alert" style="isolation: isolate;">
@@ -32,7 +32,7 @@
         </div>
       {% endfor %}
     </div>
-  {% endif %}
+  {% endif %} 
   <canvas id="cosmic-orb"></canvas>
 {% include 	"home/navbar.html" %}
 <!-- Hero Section -->
@@ -172,7 +172,7 @@
         <div class="flex justify-center gap-8 text-4xl">
           <a href="https://github.com/Sugaam0" target="_blank" class="hover:text-cyan-400 transition-transform transform hover:scale-125"><i class="fab fa-github"></i></a>
           <a href="https://www.linkedin.com/in/sugamacharya/" target="_blank" class="hover:text-cyan-400 transition-transform transform hover:scale-125"><i class="fab fa-linkedin"></i></a>
-          <a href="https://twitter.com/your_twitter" target="_blank" class="hover:text-cyan-400 transition-transform transform hover:scale-125"><i class="fab fa-twitter"></i></a>
+          <a href="https://x.com/gaam_su" target="_blank" class="hover:text-cyan-400 transition-transform transform hover:scale-125"><i class="fab fa-twitter"></i></a>
         </div>
       </div>
     </div>
