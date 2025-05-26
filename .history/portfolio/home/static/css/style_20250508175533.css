@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --accent: #3b82f6;
+    --accent-dark: #2563eb;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .navbar {
+    background: linear-gradient(to bottom, var(--bg-secondary), rgba(45, 45, 45, 0.95));
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-link {
+    position: relative;
+    padding-bottom: 0.25rem;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+  }
+
+  .logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .logo:hover {
+    transform: scale(1.05);
+    color: var(--accent);
+  }
+
+  .section-bg {
+    background-color: var(--bg-secondary);
+    border-radius: 0.75rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .section-bg:hover {
+    background-color: #353535;
+  }
+
+  .btn-accent {
+    background: linear-gradient(to right, var(--accent), var(--accent-dark));
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease;
+  }
+
+  .btn-accent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+  }
+
+  .btn-accent:hover::before {
+    left: 100%;
+  }
+
+  .btn-accent:hover {
+    background: linear-gradient(to right, var(--accent-dark), var(--accent));
+  }
+
+  .project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+    border-color: var(--accent);
+  }
+
+  .icon-hover {
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .icon-hover:hover {
+    transform: scale(1.2);
+    color: var(--accent);
+  }
+
+  /* Enhanced Contact Form Styles */
+      .contact-form {
+          background: linear-gradient(145deg, var(--bg-secondary), #252525);
+          border: 1px solid rgba(59, 130, 246, 0.3);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+          position: relative;
+          overflow: hidden;
+      }
+
+      .contact-form::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.2) 0%, transparent 50%);
+          pointer-events: none;
+      }
+
+      .form-input {
+          background-color: #1f1f1f;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .form-input:focus {
+          border-color: var(--accent);
+          box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+          outline: none;
+      }
+
+      .form-label {
+          transition: color 0.3s ease;
+      }
+
+      .form-input:focus + .form-label,
+      .form-input:not(:placeholder-shown) + .form-label {
+          color: var(--accent);
+          transform: translateY(-1.5rem);
+          font-size: 0.8rem;
+      }
+
+      ::selection {
+          background: var(--accent);
+          color: white;
+      }
